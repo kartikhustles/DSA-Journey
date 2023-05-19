@@ -19,7 +19,7 @@ public class Basics {
     }
 
     public static void main(String[] args) {
-        int arr[] = new arr[5];
+        int arr[] = new int[5];
         changeArr(arr, 0, 1);
         printArr(arr);
     }
