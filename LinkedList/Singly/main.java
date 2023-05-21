@@ -1,6 +1,18 @@
-import java.util.*;
+public class Main {
+    static class Node {
+        Node next;
+        int data;
 
-public class main {
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public static Node head;
+    public static Node tail;
+    public static int size;
+
     public static void main(String[] args) {
         LLbyKK list = new LLbyKK();
         list.insertAtFirst(3);

@@ -1,36 +1,33 @@
-import java.util.*;
-import java.util.LinkedList;
-
-public class LLbyKK{
+public class LLbyKK {
     private Node head;
 
-    private class Node{
+    private class Node {
         int val;
         Node next;
         Node prev;
 
-        public Node(int val){
+        public Node(int val) {
             this.val = val;
         }
 
-        public Node(int val, Node prev, Node next){
+        public Node(int val, Node prev, Node next) {
             this.val = val;
             this.prev = prev;
             this.next = next;
         }
     }
 
-    public void insertFirst(int val){
+    public void insertFirst(int val) {
         Node node = new Node(val);
         node.next = head;
         node.prev = null;
-        if(head != null){
+        if (head != null) {
             head.prev = node;
         }
         head = node;
     }
 
-    public void insertAtLast(int val){
+    public void insertAtLast(int val) {
         Node temp = new Node(val);
         Node node = head;
 
@@ -48,10 +45,10 @@ public class LLbyKK{
         temp.next = null;
     }
 
-    public void insertAfter(int after, int val){
-        Node p  = find(after);
+    public void insertAfter(int after, int val) {
+        Node p = find(after);
 
-        if (p == null){
+        if (p == null) {
             System.out.println("does not exist");
             return;
         }
@@ -65,7 +62,7 @@ public class LLbyKK{
         }
     }
 
-    public Node find(int val){
+    public Node find(int val) {
         Node node = head;
         while (node != null) {
             if (node.val == val) {
@@ -76,14 +73,14 @@ public class LLbyKK{
         return null;
     }
 
-    public int deleteFirst(){
+    public int deleteFirst() {
         int value = head.val;
         head = head.next;
         head.prev = null;
         return value;
     }
 
-    public int deleteLast(){
+    public int deleteLast() {
         Node tail = head;
         while (tail.next != null) {
             tail = tail.next;
@@ -93,7 +90,7 @@ public class LLbyKK{
         return value;
     }
 
-    public int deletePar(int value){
+    public int deletePar(int value) {
         Node temp = head;
         while (temp.next != null) {
             if (temp.val == value) {
@@ -104,8 +101,7 @@ public class LLbyKK{
         if (temp.prev == null) {
             head = head.next;
             head.prev = null;
-        }
-        else {
+        } else {
             temp.prev.next = temp.next;
         }
         if (temp.next != null) {
@@ -115,7 +111,7 @@ public class LLbyKK{
         return temp.val;
     }
 
-    public void display(){
+    public void display() {
         Node node = head;
         while (node != null) {
             System.out.print(node.val + " -> ");
@@ -125,7 +121,7 @@ public class LLbyKK{
         System.out.println();
     }
 
-    public void displayReverse(){
+    public void displayReverse() {
         Node temp = head;
         Node tail = null;
         while (temp != null) {
@@ -133,14 +129,14 @@ public class LLbyKK{
             temp = temp.next;
         }
         while (tail != null) {
-            System.out.print(tail.val+ " -> ");
+            System.out.print(tail.val + " -> ");
             tail = tail.prev;
         }
         System.out.println("START");
         System.out.println();
     }
 
-    public void displayInBoth(){
+    public void displayInBoth() {
         System.out.println("Print in Order");
         System.out.println();
 
@@ -161,10 +157,27 @@ public class LLbyKK{
         System.out.println();
 
         while (last != null) {
-            System.out.print(last.val+ " -> ");
+            System.out.print(last.val + " -> ");
             last = last.prev;
         }
-        
+
         System.out.println("START");
+    }
+
+    public void reverse() {
+        Node curr = head;
+        Node prev = null;
+        Node next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            curr.prev = next;
+
+            prev = curr;
+            curr = next;
+        }
+
+        head = prev;
     }
 }

@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class Basics {
     public static class Node {
         int data;
@@ -152,18 +150,12 @@ public class Basics {
     }
 
     public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
+        Basics ll = new Basics();
         ll.addFirst(2);
         ll.addFirst(1);
         ll.addLast(3);
         ll.addLast(4);
         ll.add(2, 6);
-
-        System.out.println(ll.size());
-
-        for (int i = 0; i < size; i++) {
-            System.out.println(ll.get(i));
-        }
 
         System.out.println(recSearch(2));
     }
