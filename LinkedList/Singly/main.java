@@ -1,6 +1,6 @@
-import java.util.List;
+import java.util.*;
 
-public class main{
+public class main {
     public static void main(String[] args) {
         LLbyKK list = new LLbyKK();
         list.insertAtFirst(3);
@@ -28,5 +28,21 @@ public class main{
         list.display();
         list.reverse();
         list.display();
+    }
+
+    public static int recSearch(int key) {
+        Node temp = head;
+        return helper(temp, key, 0);
+    }
+
+    private static int helper(Node temp, int key, int idx) {
+        if (temp == null) {
+            return -1;
+        }
+        if (temp.data == key) {
+            return idx;
+        }
+
+        return helper(temp.next, key, idx + 1);
     }
 }

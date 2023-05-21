@@ -1,33 +1,27 @@
-import java.util.*;
-import java.util.LinkedList;
-
 public class LLbyKK {
+    public Node head;
+    public Node tail;
+    public int size;
 
-    private Node head;
-    private Node tail;
-    private int size;
-    
-    public LLbyKK(){
+    public LLbyKK() {
         this.size = 0;
     }
 
-
-    private class Node{
-        private int value;
+    public class Node {
+        private int data;
         private Node next;
 
-        public Node(int value){
-            this.value = value;
+        public Node(int data) {
+            this.data = data;
         }
 
-        public Node(int value, Node next){
-            this.value = value;
+        public Node(int data, Node next) {
+            this.data = data;
             this.next = next;
         }
     }
 
-
-    public void insertAtFirst(int val){
+    public void insertAtFirst(int val) {
         Node node = new Node(val);
         node.next = head;
         head = node;
@@ -39,8 +33,7 @@ public class LLbyKK {
         size += 1;
     }
 
-
-    public void insertAtLast(int val){
+    public void insertAtLast(int val) {
         if (tail == null) {
             insertAtFirst(val);
             return;
@@ -51,8 +44,7 @@ public class LLbyKK {
         size++;
     }
 
-
-    public void insert(int val, int index){
+    public void insert(int val, int index) {
         if (index == 0) {
             insertAtFirst(val);
             return;
@@ -70,7 +62,7 @@ public class LLbyKK {
         size++;
     }
 
-    public Node reverse(){
+    public Node reverse() {
         Node cur = head;
         Node prev = null;
         while (cur != null) {
@@ -82,18 +74,16 @@ public class LLbyKK {
         return prev;
     }
 
-
-    public void display(){
+    public void display() {
         Node temp = head;
         while (temp != null) {
-            System.out.print(temp.value + " -> ");
+            System.out.print(temp.data + " -> ");
             temp = temp.next;
         }
         System.out.println("Null");
     }
 
-
-    public Node get(int index){
+    public Node get(int index) {
         Node node = head;
         for (int i = 0; i < index; i++) {
             node = node.next;
@@ -101,11 +91,10 @@ public class LLbyKK {
         return node;
     }
 
-
-    public Node find(int val){
+    public Node find(int val) {
         Node node = head;
         while (node != null) {
-            if (node.value == val) {
+            if (node.data == val) {
                 return node;
             }
             node = node.next;
@@ -113,9 +102,8 @@ public class LLbyKK {
         return null;
     }
 
-
-    public int deleteFirst(){
-        int val = head.value;
+    public int deleteFirst() {
+        int val = head.data;
         head = head.next;
         if (head == null) {
             tail = null;
@@ -124,20 +112,18 @@ public class LLbyKK {
         return val;
     }
 
-
-    public int deleteLast(){
+    public int deleteLast() {
         if (size <= 1) {
             return deleteFirst();
         }
-        int val = tail.value;
-        tail = get(size-2);
+        int val = tail.data;
+        tail = get(size - 2);
         tail.next = null;
         size--;
         return val;
     }
 
-
-    public int delete(int index){
+    public int delete(int index) {
         if (index == 0) {
             return deleteFirst();
         }
@@ -145,10 +131,55 @@ public class LLbyKK {
             return deleteLast();
         }
         Node first = get(index - 1);
-        int val = first.next.value;
+        int val = first.next.data;
         Node second = first.next.next;
         first.next = second;
         size--;
         return val;
+    }
+
+    public int recSearch(int key) {
+        Node temp = head;
+        return helper(temp, key, 0);
+    }
+
+    private static int helper(Node temp, int key, int idx) {
+        if (temp == null) {
+            return -1;
+        }
+        if (temp.data == key) {
+            return idx;
+        }
+
+        return helper(temp.next, key, idx + 1);
+    }
+
+    public static void main(String[] args) {
+        LLbyKK list = new LLbyKK();
+        list.insertAtFirst(3);
+        list.insertAtLast(7);
+        list.insertAtFirst(10);
+        list.insertAtLast(15);
+        list.insert(20, 2);
+        list.display();
+
+        System.out.println(list.deleteFirst());
+        list.display();
+
+        System.out.println(list.deleteLast());
+        list.display();
+
+        System.out.println(list.delete(1));
+        list.display();
+
+        // System.out.println(list.find(7));
+
+        list.insertAtFirst(5);
+        list.insertAtLast(1);
+        list.insertAtFirst(10);
+
+        list.display();
+        list.reverse();
+        list.display();
     }
 }
