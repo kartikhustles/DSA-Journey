@@ -34,11 +34,25 @@ public class ClimbingWays {
         return ways[n];
     }
 
+    // Tabulation O(n)
+    public static int tab(int n) {
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+
+        for (int i = 2; i < dp.length; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+
+        return dp[n];
+    }
+
     public static void main(String[] args) {
         int n = 5; // n = 3 -> 3 & n = 4 -> n = 5 -> 8
         int ways[] = new int[n + 1]; // 0 0 0 0
         Arrays.fill(ways, -1);
         System.out.println(countways(n, ways));
+        System.out.println(tab(n));
     }
 
 }
