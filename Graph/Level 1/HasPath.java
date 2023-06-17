@@ -49,6 +49,7 @@ public class HasPath {
         graph[6].add(new Edge(6, 5, 1));
     }
 
+    // O(V+E)
     public static boolean ans(ArrayList<Edge>[] graph, int src, int dest, boolean visit[]) {
         if (src == dest) {
             return true;

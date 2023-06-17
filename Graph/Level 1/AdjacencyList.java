@@ -15,6 +15,7 @@ public class AdjacencyList {
 
     public static void main(String[] args) {
         int V = 5;
+        // int arr[] = new int[V];
         ArrayList<Edge>[] graph = new ArrayList[V]; // null -> empty arraylist
 
         for (int i = 0; i < V; i++) {
